@@ -5,20 +5,22 @@ namespace App\Traits;
 trait ResponseApi
 {
 
-    public function coreResponse($message, $data = null, $statusCode, $isSucess = true)
+    public function coreResponse($message, $data = null, $statusCode = null, $isSucess = true)
     {
         //Checar os parametros
-        if(!$message) return response()->json(['message' => 'Message is required'], 500);
+        if (!$message) {
+            return response()->json(['message' => 'Message is required'], 500);
+        }
 
         //enviar mensagem
-        if($isSucess){
+        if ($isSucess) {
             return response()->json([
                 'message' => $message,
                 'error' => false,
                 'code' => $statusCode,
                 'results' => $data
             ], $statusCode);
-        } else{
+        } else {
             return response()->json([
                 'message' => $message,
                 'error' => true,

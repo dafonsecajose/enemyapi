@@ -7,7 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 class UserRequest extends FormRequest
 {
 
-    protected function prepareForValidation(){
+    protected function prepareForValidation()
+    {
         $this->merge([
             'name' => filter_var($this->name, FILTER_SANITIZE_STRIPPED),
             'email' => filter_var($this->email, FILTER_SANITIZE_EMAIL),

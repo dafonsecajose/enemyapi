@@ -10,4 +10,5 @@ interface EnemySearchRepositoryInterface
 
     public function getBook();
 
+    public function getEnemySearch(string $name);
 }

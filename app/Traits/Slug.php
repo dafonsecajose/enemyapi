@@ -12,7 +12,6 @@ trait Slug
         $matchs = $this->uniqueSlug($slug);
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = $matchs ? $slug . '-' . $matchs : $slug;
-
     }
 
     public function uniqueSlug($slug)

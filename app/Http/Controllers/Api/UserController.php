@@ -7,13 +7,13 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
-
 class UserController extends Controller
 {
 
     private $user;
 
-    public function __construct(UserRepositoryInterface $user){
+    public function __construct(UserRepositoryInterface $user)
+    {
         $this->user = $user;
     }
     /**

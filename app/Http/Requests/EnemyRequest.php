@@ -28,7 +28,7 @@ class EnemyRequest extends FormRequest
             'rank' => 'required',
             'level' => 'required',
             'affiliation' => 'required',
-            'description'=> 'required',
+            'description' => 'required',
             'images.*' => 'mimes:jpg,png,jpeg'
         ];
     }
@@ -40,7 +40,7 @@ class EnemyRequest extends FormRequest
             'rank' => filter_var($this->rank, FILTER_SANITIZE_STRIPPED),
             'level' => filter_var($this->level, FILTER_SANITIZE_STRIPPED),
             'affiliation' => filter_var($this->affiliation, FILTER_SANITIZE_STRIPPED),
-            'description'=> filter_var($this->description, FILTER_SANITIZE_STRIPPED),
+            'description' => filter_var($this->description, FILTER_SANITIZE_STRIPPED),
         ]);
     }
 }

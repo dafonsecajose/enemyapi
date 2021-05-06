@@ -6,18 +6,20 @@ use App\Models\Enemy;
 use App\Repositories\Contracts\EnemySearchRepositoryInterface;
 use App\Http\Resources\EnemyResource;
 use App\Http\Resources\EnemyCollection;
+use Exception;
 
 class EnemySearchRepository extends AbstractRepository implements EnemySearchRepositoryInterface
 {
 
-    public function __construct(Enemy $model){
+    public function __construct(Enemy $model)
+    {
         parent::__construct($model);
     }
 
 
     public function getAllEnemies()
     {
-        try{
+        try {
             $enemies = $this->model->paginate(200);
 
             $enemies = EnemyResource::collection($enemies)->hide([
@@ -31,30 +33,31 @@ class EnemySearchRepository extends AbstractRepository implements EnemySearchRep
                 'level'
                 ]);
             return $this->success("All enemies", $enemies);
-        }catch (Excption $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
 
     public function getEnemyBySlug($slug)
     {
-        try{
+        try {
             $enemy = $this->model->where('slug', $slug)
                 ->with('photos')
                 ->first();
-            if(!$enemy)
+            if (!$enemy) {
                 return $this->error("Enemy not found", 404);
+            }
 
             $enemy = (new EnemyResource($enemy))->hide(['id', 'slug', 'link']);
             return $this->success("Enemy found", $enemy);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
 
     public function getBook()
     {
-        try{
+        try {
             $enemy = $this->model->with('photos')->paginate(1);
             $enemy = (new EnemyCollection($enemy))->hide([
                 'id',
@@ -65,14 +68,14 @@ class EnemySearchRepository extends AbstractRepository implements EnemySearchRep
             ]);
 
             return $this->success("Enemy found", $enemy);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
 
-    public function getEnemySearch(String $name)
+    public function getEnemySearch(string $name)
     {
-        try{
+        try {
             $enemy = $this->model
                 ->where('name', 'LIKE', '%' . $name . '%')
                 ->with('photos')
@@ -89,7 +92,7 @@ class EnemySearchRepository extends AbstractRepository implements EnemySearchRep
                 'photos',
                 'level']);
             return $this->success("Enemy found", $enemy);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }

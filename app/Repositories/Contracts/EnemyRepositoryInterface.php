@@ -6,7 +6,6 @@ use App\Http\Requests\EnemyRequest;
 
 interface EnemyRepositoryInterface
 {
-    public function all();
 
     public function createEnemy(EnemyRequest $request);
 
@@ -16,4 +15,5 @@ interface EnemyRepositoryInterface
 
     public function getEnemyById($id);
 
+    public function getAllEnemies();
 }

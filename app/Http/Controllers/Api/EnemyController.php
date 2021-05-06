@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\Contracts\EnemyRepositoryInterface;
 
-
 class EnemyController extends Controller
 {
     private $enemy;
@@ -42,5 +41,4 @@ class EnemyController extends Controller
     {
         return $this->enemy->deleteEnemy($id);
     }
-
 }

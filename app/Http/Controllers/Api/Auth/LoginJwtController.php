@@ -20,8 +20,7 @@ class LoginJwtController extends Controller
             'password' => 'required|string|min:8'
         ])->validate();
 
-        if(!$token = auth('api')->attempt($credentials))
-        {
+        if (!$token = auth('api')->attempt($credentials)) {
             return $this->error("Unauthorized", 401);
         }
 
@@ -33,7 +32,7 @@ class LoginJwtController extends Controller
     public function logout()
     {
         auth('api')->logout();
-        return $this->success("Logout successfully", [],200);
+        return $this->success("Logout successfully", [], 200);
     }
 
     public function refresh()

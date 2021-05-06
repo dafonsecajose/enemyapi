@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
@@ -16,13 +17,13 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function getAllUsers()
     {
-        try{
+        try {
             $users = $this->model->paginate(200);
-            if(!$users){
+            if (!$users) {
                 return $this->error("Users not found", 404);
             }
             return $this->success("Users found", $users, 200);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
@@ -30,28 +31,30 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function createUser(UserRequest $request)
     {
         $data = $request->all();
-        if(!$request->has('password') || !$request->get('password'))
+        if (!$request->has('password') || !$request->get('password')) {
             return $this->error("It is necessary to send the password", 422);
+        }
 
-        try{
+        try {
             $data['password'] = bcrypt($data['password']);
             $user = $this->model->create($data);
 
             return $this->success("User successfully registered", $user, 201);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
 
     public function getUser($id)
     {
-        try{
+        try {
             $user = $this->model->find($id);
-            if(!$user)
+            if (!$user) {
                 return $this->error("User not found", 404);
+            }
 
             return $this->success("User found", $user, 200);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
@@ -60,8 +63,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         $data = $request->all();
 
-        try{
-            if($request->has('password') || $request->get('password')){
+        try {
+            if ($request->has('password') || $request->get('password')) {
                 $data['password'] = bcrypt($data['password']);
             } else {
                 unset($data['password']);
@@ -69,8 +72,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
             $user = $this->model->find($id);
 
-            if(!$user)
+            if (!$user) {
                 return $this->error("User not found", 404);
+            }
 
             $user->update($data);
             return $this->success("Updated user", $user, 200);
@@ -84,14 +88,14 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         try {
             $user = $this->model->find($id);
 
-            if(!$user)
+            if (!$user) {
                 return $this->error("User not found exist", 404);
+            }
 
             $user->delete();
             return $this->success("User successfully removed", $user);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
-
 }
