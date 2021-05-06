@@ -31,13 +31,14 @@ class LoginJwtTest extends TestCase
     /**
      * @test
      */
-    public function doMinimumPasswordCharactersRequired(){
+    public function doMinimumPasswordCharactersRequired()
+    {
         $userData = [
             "email" => "test@test.com",
             "password" => "1234567"
         ];
 
-        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login',$userData)
+        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login', $userData)
             ->assertStatus(422)
             ->assertExactJson([
                 "message" => "The given data was invalid.",
@@ -65,7 +66,7 @@ class LoginJwtTest extends TestCase
             'password' => 'password1'
         ];
 
-        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login',$userWrongData)
+        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login', $userWrongData)
             ->assertStatus(401)
             ->assertExactJson([
                 "error" => true,
@@ -77,7 +78,8 @@ class LoginJwtTest extends TestCase
     /**
      * @test
      */
-    public function doLoginAndReturnToken(){
+    public function doLoginAndReturnToken()
+    {
         User::factory()->create([
             'name' => 'John Doe',
             'email' => 'johndoe@test.com',
@@ -89,7 +91,7 @@ class LoginJwtTest extends TestCase
             'email' => 'johndoe@test.com',
             'password' => 'password'
         ];
-        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login',$userData)
+        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login', $userData)
             ->assertStatus(200)
             ->assertJsonStructure([
                 "token"
@@ -113,7 +115,7 @@ class LoginJwtTest extends TestCase
             'email' => 'johndoe@test.com',
             'password' => 'password'
         ];
-        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login',$userData)
+        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login', $userData)
             ->assertStatus(200)
             ->assertJsonStructure([
                 "token"
@@ -145,7 +147,7 @@ class LoginJwtTest extends TestCase
             'email' => 'johndoe@test.com',
             'password' => 'password'
         ];
-        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login',$userData)
+        $this->withHeader('Accept', 'application/json')->json('POST', 'api/v1/login', $userData)
             ->assertStatus(200)
             ->assertJsonStructure([
                 "token"
@@ -155,13 +157,11 @@ class LoginJwtTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 "message",
-                "results"=> [
+                "results" => [
                     "token"
                 ],
                 "code",
                 "error"
             ]);
     }
-
-
 }

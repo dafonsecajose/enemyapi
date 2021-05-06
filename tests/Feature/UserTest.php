@@ -85,7 +85,6 @@ class UserTest extends TestCase
                     "password" => ["The password confirmation does not match."]
                 ]
             ]);
-
     }
 
     /**
@@ -234,7 +233,7 @@ class UserTest extends TestCase
                 'message' => 'User successfully removed',
                 'error' => false,
                 'code' => 200,
-                'results' =>[]
+                'results' => []
             ]);
     }
 

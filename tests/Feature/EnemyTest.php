@@ -80,7 +80,8 @@ class EnemyTest extends TestCase
     /**
      * @test
      */
-    public function doShowEnemyById(){
+    public function doShowEnemyById()
+    {
         $token = $this->getAuthenticateToken();
 
         $enemy = Enemy::factory()->create([
@@ -133,7 +134,8 @@ class EnemyTest extends TestCase
     /**
      * @test
      */
-    public function doDeleteEnemyById(){
+    public function doDeleteEnemyById()
+    {
         $token = $this->getAuthenticateToken();
 
         $enemy = Enemy::factory()->create([
@@ -158,7 +160,8 @@ class EnemyTest extends TestCase
     /**
      * @test
      */
-    public function doNotDeleteNonExistendEnemy(){
+    public function doNotDeleteNonExistendEnemy()
+    {
         $token = $this->getAuthenticateToken();
         $wrongId = 300;
 
@@ -188,7 +191,7 @@ class EnemyTest extends TestCase
                     'rank' => ['The rank field is required.'],
                     'level' => ['The level field is required.'],
                     'affiliation' => ['The affiliation field is required.'],
-                    'description'=> ['The description field is required.'],
+                    'description' => ['The description field is required.'],
                 ]
             ]);
     }
@@ -248,7 +251,7 @@ class EnemyTest extends TestCase
         ];
 
 
-        $this->withHeaders(['Authorization' => 'Bearer '. $token,
+        $this->withHeaders(['Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json'])
             ->json('POST', 'api/v1/enemies/' . $wrongId, $enemyData)
             ->assertStatus(404)
@@ -303,7 +306,8 @@ class EnemyTest extends TestCase
             ]);
     }
 
-    private function getAuthenticateToken(){
+    private function getAuthenticateToken()
+    {
         $user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'johndoe@test.com',
@@ -323,5 +327,3 @@ class EnemyTest extends TestCase
         return $token;
     }
 }
-
-

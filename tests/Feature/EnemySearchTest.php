@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class EnemySearchTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * @test
      */
@@ -26,29 +27,29 @@ class EnemySearchTest extends TestCase
             'slug' => Str::slug('John Doe')
         ]);
 
-        $this->withHeader('Accept','application/json')->json('GET', 'api/v1/search/enemies/')
+        $this->withHeader('Accept', 'application/json')->json('GET', 'api/v1/search/enemies/')
             ->assertStatus(200)
             ->assertExactJson([
                 'message' => 'All enemies',
                 'error' => false,
                 'code' => 200,
-                'results' =>[
+                'results' => [
                     'data' => [
                     [
                         'name' => 'John Doe',
                         'link' => route('search.enemies.show', ['slug' => Str::slug('John Doe')])
                     ]
-                ],
-                "current_page"=> 1,
-                "total" => 1,
-                "per_page" => 200,
-                "last_page"=> 1,
-                "first_page_url"=>  route('search.enemies.index', ['page'=> '1']),
-                "last_page_url" =>  route('search.enemies.index', ['page'=> '1']),
-                "next_page_url" =>  null,
-                "prev_page_url" => null,
-                "path" => route('search.enemies.index'),
-            ]
+                    ],
+                    "current_page" => 1,
+                    "total" => 1,
+                    "per_page" => 200,
+                    "last_page" => 1,
+                    "first_page_url" =>  route('search.enemies.index', ['page' => '1']),
+                    "last_page_url" =>  route('search.enemies.index', ['page' => '1']),
+                    "next_page_url" =>  null,
+                    "prev_page_url" => null,
+                    "path" => route('search.enemies.index'),
+                ]
 
             ]);
     }
@@ -56,7 +57,8 @@ class EnemySearchTest extends TestCase
     /**
      * @test
      */
-    public function doReturnEnemyBySlug(){
+    public function doReturnEnemyBySlug()
+    {
         $enemy = Enemy::factory()->create([
             'name' => 'John Doe',
             'rank' => 'Jounin',
@@ -66,7 +68,7 @@ class EnemySearchTest extends TestCase
             'slug' => Str::slug('John Doe')
         ]);
 
-        $this->withHeader('Accept','application/json')->json('GET', 'api/v1/search/enemies/' . $enemy->slug, [])
+        $this->withHeader('Accept', 'application/json')->json('GET', 'api/v1/search/enemies/' . $enemy->slug, [])
             ->assertStatus(200)
             ->assertExactJson([
                 'message' => 'Enemy found',
@@ -86,7 +88,8 @@ class EnemySearchTest extends TestCase
     /**
      * @test
      */
-    public function doReturnBook(){
+    public function doReturnBook()
+    {
         Enemy::factory()->create([
             'name' => 'John Doe',
             'rank' => 'Jounin',
@@ -105,15 +108,15 @@ class EnemySearchTest extends TestCase
             'slug' => Str::slug('Maria Doe')
         ]);
 
-        $this->withHeader('Accept','application/json')->json('GET', 'api/v1/search/enemies/book')
+        $this->withHeader('Accept', 'application/json')->json('GET', 'api/v1/search/enemies/book')
             ->assertStatus(200)
             ->assertExactJson([
                 'message' => 'Enemy found',
                 'error' => false,
                 'code' => 200,
                 'results' => [
-                    "current_page"=> 1,
-                    'data' =>[
+                    "current_page" => 1,
+                    'data' => [
                         [
                                 'name' => 'John Doe',
                                 'rank' => 'Jounin',
@@ -125,10 +128,10 @@ class EnemySearchTest extends TestCase
                     ],
                     "total" => 2,
                     "per_page" => 1,
-                    "last_page"=> 2,
-                    "first_page_url"=>  route('search.enemies.book', ['page'=> '1']),
-                    "last_page_url" =>  route('search.enemies.book', ['page'=> '2']),
-                    "next_page_url" =>  route('search.enemies.book', ['page'=> '2']),
+                    "last_page" => 2,
+                    "first_page_url" =>  route('search.enemies.book', ['page' => '1']),
+                    "last_page_url" =>  route('search.enemies.book', ['page' => '2']),
+                    "next_page_url" =>  route('search.enemies.book', ['page' => '2']),
                     "prev_page_url" => null,
                     "path" => route('search.enemies.book'),
                 ]
@@ -168,15 +171,15 @@ class EnemySearchTest extends TestCase
 
         $name = 'John';
 
-        $this->withHeader('Accept','application/json')->json('GET', 'api/v1/search/enemies/search?name='. $name)
+        $this->withHeader('Accept', 'application/json')->json('GET', 'api/v1/search/enemies/search?name=' . $name)
             ->assertStatus(200)
-            ->assertExactJson ([
+            ->assertExactJson([
             'message' => 'Enemy found',
             'error' => false,
             'code' => 200,
             'results' => [
-                "current_page"=> 1,
-                'data' =>[
+                "current_page" => 1,
+                'data' => [
                     [
                         "name" => 'John Doe',
                         "link" => route('search.enemies.show', ['slug' => Str::slug('John Doe')])
@@ -184,16 +187,13 @@ class EnemySearchTest extends TestCase
                 ],
                 "total" => 1,
                 "per_page" => 200,
-                "last_page"=> 1,
-                "first_page_url"=>  route('search.enemies.search', ['page'=> '1']),
-                "last_page_url" =>  route('search.enemies.search', ['page'=> '1']),
+                "last_page" => 1,
+                "first_page_url" =>  route('search.enemies.search', ['page' => '1']),
+                "last_page_url" =>  route('search.enemies.search', ['page' => '1']),
                 "next_page_url" => null,
                 "prev_page_url" => null,
                 "path" => route('search.enemies.search'),
             ]
             ]);
     }
-
 }
-
-
