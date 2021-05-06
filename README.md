@@ -31,7 +31,11 @@ Esta API foi inspirada pelo 'bingo book', que contém informações sobre os ini
 - Rode o comando `php artisan serve` para rodar o projeto.
 
 ## Documentation
-https://documenter.getpostman.com/view/9944414/TzRNFpuG
+- https://documenter.getpostman.com/view/9944414/TzRNFpuG
 
 ## Documentação 
-https://documenter.getpostman.com/view/9944414/TzRNFpuG
+- https://documenter.getpostman.com/view/9944414/TzRNFpuG
+
+## License
+- [MIT LINCESE](LICENSE)
+
