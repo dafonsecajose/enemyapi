@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Enemy;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 
 class EnemyTest extends TestCase
@@ -231,6 +232,53 @@ class EnemyTest extends TestCase
                     'description',
                     'created_at',
                     'updated_at'
+                ]
+            ]);
+    }
+
+    /**
+     * @test
+     */
+    public function doSuccessfullyCreateEnemyWithPhotos()
+    {
+        $token = $this->getAuthenticateToken();
+
+        $enemyData = [
+            'name' => 'Photos Doe',
+            'rank' => 'Jounin',
+            'level' => 'A',
+            'affiliation' => 'Vila do Som',
+            'description' => 'Lorem ipsum dolor sitsto quis quae rerum fuga!',
+            'slug' => Str::slug('Photos Doe'),
+            'images' => [
+                'side' => UploadedFile::fake()->create('test.png', $kilobytes = 0),
+                'front' => UploadedFile::fake()->create('test1.png', $kilobytes = 0),
+                'back' => UploadedFile::fake()->create('test2.png', $kilobytes = 0)
+            ]
+        ];
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token, 'Accept' => 'application/json'])
+            ->json('POST', 'api/v1/enemies', $enemyData)->getContent();
+
+        $id = json_decode($response)->results->id;
+
+        $this->withHeaders(['Authorization' => 'Bearer ' . $token, 'Accept' => 'application/json'])
+            ->json('GET', 'api/v1/enemies/' . $id)
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'message',
+                'code',
+                'error',
+                'results' => [
+                    'id',
+                    'name',
+                    'rank',
+                    'level',
+                    'affiliation',
+                    'description',
+                    'created_at',
+                    'updated_at',
+                    'photos' => []
                 ]
             ]);
     }
