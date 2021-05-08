@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class UserRequest extends FormRequest
+class UserRequest extends ApiRequest
 {
 
     protected function prepareForValidation()
@@ -31,10 +29,22 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed'
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:8|confirmed'
+                ];
+                break;
+            case 'PUT':
+            case 'PATCH':
+                return [
+                        'name' => 'required|string|max:255',
+                        'email' => 'required|string|email|max:255|unique:users'
+                    ];
+            default:
+                break;
+        }
     }
 }

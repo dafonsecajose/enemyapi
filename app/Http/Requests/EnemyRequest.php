@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class EnemyRequest extends FormRequest
+class EnemyRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.

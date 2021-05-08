@@ -185,14 +185,17 @@ class EnemyTest extends TestCase
             ->json('POST', 'api/v1/enemies')
             ->assertStatus(422)
             ->assertJson([
-                'message' => 'The given data was invalid.',
-                'errors' => [
-                    'name' => ['The name field is required.'],
-                    'rank' => ['The rank field is required.'],
-                    'level' => ['The level field is required.'],
-                    'affiliation' => ['The affiliation field is required.'],
-                    'description' => ['The description field is required.'],
-                ]
+                'message' => [
+                    'errors' => [
+                        'name' => ['The name field is required.'],
+                        'rank' => ['The rank field is required.'],
+                        'level' => ['The level field is required.'],
+                        'affiliation' => ['The affiliation field is required.'],
+                        'description' => ['The description field is required.'],
+                    ]
+                ],
+                'code' => 422,
+                'error' => true
             ]);
     }
 

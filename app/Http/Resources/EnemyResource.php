@@ -4,13 +4,12 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
 class EnemyResource extends JsonResource
 {
 
     public static function collection($resource)
     {
-        return tap(new EnemyCollection($resource), function($collection){
+        return tap(new EnemyCollection($resource), function ($collection) {
             $collection->collects = __CLASS__;
         });
     }

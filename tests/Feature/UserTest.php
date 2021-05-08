@@ -53,12 +53,15 @@ class UserTest extends TestCase
             ->json('POST', 'api/v1/users')
             ->assertStatus(422)
             ->assertJson([
-                'message' => 'The given data was invalid.',
-                'errors' => [
-                    'name' => ['The name field is required.'],
-                    'email' => ['The email field is required.'],
-                    'password' => ['The password field is required.']
-                ]
+                'message' =>  [
+                    'errors' => [
+                        'name' => ['The name field is required.'],
+                        'email' => ['The email field is required.'],
+                        'password' => ['The password field is required.']
+                    ]
+                ],
+                'error' => true,
+                'code' => 422
             ]);
     }
 
@@ -79,10 +82,13 @@ class UserTest extends TestCase
             ->json('POST', 'api/v1/users', $userData)
             ->assertStatus(422)
             ->assertJson([
-                "message" => "The given data was invalid.",
-                "errors" => [
-                    "password" => ["The password confirmation does not match."]
-                ]
+                "message" => [
+                    "errors" => [
+                        "password" => ["The password confirmation does not match."]
+                        ]
+                    ],
+                'code' => 422,
+                'error' => true
             ]);
     }
 
