@@ -15,7 +15,8 @@ class PhotoEnemyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->position => asset('storage/' . $this->photo),
+            'image' => asset('storage/' . $this->photo),
+            'position' => $this->position
         ];
     }
 }
