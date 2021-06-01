@@ -22,36 +22,31 @@ use App\Http\Controllers\Api\EnemySearchController;
 //     return $request->user();
 // });
 
-Route::prefix('v1')->group(function(){
+Route::prefix('v1')->group(function () {
 
     Route::post('login', [LoginJwtController::class, 'login'])->name('login');
     Route::get('logout', [LoginJwtController::class, 'logout'])->name('logout');
     Route::get('refresh', [LoginJwtController::class, 'refresh'])->name('refresh');
 
-    Route::prefix('search')->name('search.')->group(function (){
-        Route::prefix('enemies')->name('enemies.')->group(function(){
+    Route::prefix('search')->name('search.')->group(function () {
+        Route::prefix('enemies')->name('enemies.')->group(function () {
             Route::get('/', [EnemySearchController::class, 'index'])->name('index');
             Route::get('/book', [EnemySearchController::class, 'book'])->name('book');
             Route::get('/search', [EnemySearchController::class, 'search'])->name('search');
             Route::get('/{slug}', [EnemySearchController::class, 'show'])->name('show');
-
         });
     });
 
 
-    Route::group(['middleware' =>['jwt.auth']], function(){
-            Route::apiResource('users', UserController::class,  ['parameters' => ['users' => 'id']]);
+    Route::group(['middleware' => ['jwt.auth']], function () {
+            Route::apiResource('users', UserController::class, ['parameters' => ['users' => 'id']]);
 
-        Route::prefix('enemies')->name('enemies.')->group(function() {
+        Route::prefix('enemies')->name('enemies.')->group(function () {
             Route::get('/', [EnemyController::class, 'index'])->name('index');
             Route::get('/{id}', [EnemyController::class, 'show'])->name('show');
             Route::post('/', [EnemyController::class, 'store'])->name('save');
-            Route::match(['PUT', 'POST'],'/{id}', [EnemyController::class, 'update'])->name('update');
+            Route::put('/{id}', [EnemyController::class, 'update'])->name('update');
             Route::delete('/{id}', [EnemyController::class, 'destroy'])->name('delete');
         });
     });
 });
-
-
-
-

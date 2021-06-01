@@ -2,10 +2,12 @@
 
 namespace App\Traits;
 
+use Illuminate\Http\JsonResponse;
+
 trait ResponseApi
 {
 
-    public function coreResponse($message, $data = null, $statusCode = null, $isSucess = true)
+    public function coreResponse($message, $data = null, $statusCode = null, $isSucess = true): JsonResponse
     {
         //Checar os parametros
         if (!$message) {

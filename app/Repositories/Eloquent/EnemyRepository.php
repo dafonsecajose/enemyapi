@@ -28,9 +28,20 @@ class EnemyRepository extends AbstractRepository implements EnemyRepositoryInter
 
     public function createEnemy(EnemyRequest $request)
     {
-        $data = $request->all();
+        $data = $request->only(['name', 'rank', 'level', 'affiliation', 'description']);
 
-        $images = $request->file('images');
+
+        $images = [];
+        if ($request->hasFile('front')) {
+            $images['front'] = $request->file('front');
+        }
+        if ($request->hasFile('side')) {
+            $images['side'] = $request->file('side');
+        }
+        if ($request->hasFile('back')) {
+            $images['back'] = $request->file('back');
+        }
+
         try {
             $enemyExist = $this->model->where('name', '=', $request->name)->first();
             if ($enemyExist) {
@@ -58,8 +69,18 @@ class EnemyRepository extends AbstractRepository implements EnemyRepositoryInter
 
     public function updateEnemy(EnemyRequest $request, $id)
     {
-        $data = $request->all();
-        $images = $request->get('images');
+        $data = $request->only(['name', 'rank', 'level', 'affiliation', 'description']);
+
+        $images = [];
+        if ($request->hasFile('front')) {
+            $images['front'] = $request->file('front');
+        }
+        if ($request->hasFile('side')) {
+            $images['side'] = $request->file('side');
+        }
+        if ($request->hasFile('back')) {
+            $images['back'] = $request->file('back');
+        }
 
         try {
             $enemy = $this->model->find($id);
