@@ -30,7 +30,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function createUser(UserRequest $request)
     {
-        $data = $request->all();
+        $data = $request->only(['name', 'email', 'password', 'password_confirmation']);
+
         if (!$request->has('password') || !$request->get('password')) {
             return $this->error("It is necessary to send the password", 422);
         }
@@ -61,7 +62,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function updateUser(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->only(['name', 'email', 'password', 'password_confirmation']);
 
         try {
             if ($request->has('password') || $request->get('password')) {
