@@ -2,7 +2,7 @@
 
 This API was inspired by the 'bingo book', which contains information about the enemies of the hidden villages in the Naruto anime universe. Well, I'm using this project to exemplify the construction of an API with Laravel 8, using JWT to authenticate protected routes.
 
-Esta API foi inspirada pelo 'bingo book', que contém informações sobre os inimigos das vilas ocultas no universo do anime Naruto. Bom estou utilizando desse projeto para exemplificar a contrução de uma API com Laravel 8, utilizando JWT para fazer autenticação nas rotas protegidas.
+Esta API foi inspirada pelo 'bingo book', que contém informações sobre os inimigos das vilas ocultas no universo do anime Naruto. Bom estou utilizando desse projeto para exemplificar a construção de uma API com Laravel 8, utilizando JWT para fazer autenticação nas rotas protegidas.
 
 ## Technology
 
