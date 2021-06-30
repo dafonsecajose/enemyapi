@@ -22,11 +22,11 @@ class EnemyRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:enemies',
-            'rank' => 'required',
-            'level' => 'required',
-            'affiliation' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|unique:enemies,name,' . $this->route('id'),
+            'rank' => 'required|string',
+            'level' => 'required|string',
+            'affiliation' => 'required|string',
+            'description' => 'required|string',
             'images.*' => 'mimes:jpg,png,jpeg'
         ];
     }
