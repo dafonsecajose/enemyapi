@@ -18,6 +18,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::resource('/customers', CustomerController::Class)->middleware('auth');

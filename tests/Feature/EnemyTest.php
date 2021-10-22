@@ -304,7 +304,7 @@ class EnemyTest extends TestCase
 
         $this->withHeaders(['Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json'])
-            ->json('POST', 'api/v1/enemies/' . $wrongId, $enemyData)
+            ->json('PUT', 'api/v1/enemies/' . $wrongId, $enemyData)
             ->assertStatus(404)
             ->assertJson([
                 'message' => 'Enemy not found',
@@ -339,7 +339,7 @@ class EnemyTest extends TestCase
         ];
         $this->withHeaders(['Authorization' => 'Bearer ' . $token ,
             'Accept' => 'application/json'])
-            ->json('POST', 'api/v1/enemies/ ' . $enemy->id, $enemyData)
+            ->json('PUT', 'api/v1/enemies/ ' . $enemy->id, $enemyData)
             ->assertStatus(200)
             ->assertJson([
                 'message' => 'Enemy sucessfully updated',

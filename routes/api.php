@@ -24,9 +24,9 @@ use App\Http\Controllers\Api\EnemySearchController;
 
 Route::prefix('v1')->group(function () {
 
-    Route::post('login', [LoginJwtController::class, 'login'])->name('login');
-    Route::get('logout', [LoginJwtController::class, 'logout'])->name('logout');
-    Route::get('refresh', [LoginJwtController::class, 'refresh'])->name('refresh');
+    Route::post('auth/login', [LoginJwtController::class, 'login'])->name('login');
+    Route::get('auth/logout', [LoginJwtController::class, 'logout'])->name('logout');
+    Route::get('auth/refresh', [LoginJwtController::class, 'refresh'])->name('refresh');
 
     Route::prefix('search')->name('search.')->group(function () {
         Route::prefix('enemies')->name('enemies.')->group(function () {

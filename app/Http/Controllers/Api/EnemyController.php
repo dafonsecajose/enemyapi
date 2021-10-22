@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\EnemyRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Repositories\Contracts\EnemyRepositoryInterface;
+use App\swagger\Controllers\Api\EnemyControllerInterface;
 
-class EnemyController extends Controller
+class EnemyController extends Controller implements EnemyControllerInterface
 {
     private $enemy;
 

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\swagger\Controllers\Api\Auth\LoginJwtControllerInterface;
 use Illuminate\Http\Request;
 use App\Traits\ResponseApi;
 use Illuminate\Support\Facades\Validator;
 
-class LoginJwtController extends Controller
+class LoginJwtController extends Controller implements LoginJwtControllerInterface
 {
     use ResponseApi;
 

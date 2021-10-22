@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\swagger\Controllers\Api\UserControllerInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
-class UserController extends Controller
+class UserController extends Controller implements UserControllerInterface
 {
 
     private $user;

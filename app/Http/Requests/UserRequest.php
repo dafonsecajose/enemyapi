@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-class UserRequest extends ApiRequest
+use App\swagger\Requests\UserRequestInterface;
+
+class UserRequest extends ApiRequest implements UserRequestInterface
 {
 
     protected function prepareForValidation()
