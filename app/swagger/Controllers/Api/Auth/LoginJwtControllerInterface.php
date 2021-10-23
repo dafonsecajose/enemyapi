@@ -1,6 +1,7 @@
 <?php
 namespace App\swagger\Controllers\Api\Auth;
 
+use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 
 interface LoginJwtControllerInterface
@@ -37,7 +38,7 @@ interface LoginJwtControllerInterface
      *      )
      * )
      */
-    public function login(Request $request);
+    public function login(AuthRequest $request);
 
     /**
      * @OA\Get(

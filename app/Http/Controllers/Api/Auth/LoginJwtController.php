@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequest;
 use App\swagger\Controllers\Api\Auth\LoginJwtControllerInterface;
-use Illuminate\Http\Request;
 use App\Traits\ResponseApi;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +12,7 @@ class LoginJwtController extends Controller implements LoginJwtControllerInterfa
 {
     use ResponseApi;
 
-    public function login(Request $request)
+    public function login(AuthRequest $request)
     {
         $credentials = $request->all(['email', 'password']);
 

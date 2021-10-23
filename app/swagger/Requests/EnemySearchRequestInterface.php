@@ -6,9 +6,9 @@ namespace App\swagger\Requests;
  *      title="Enemy Request",
  *      description="User request",
  *      type="object",
- *      required={"sarch"},
+ *      required={"name"},
  *      @OA\Property(
- *          property="search",
+ *          property="name",
  *          description="Field Serach",
  *          example="John Doe"
  *      )

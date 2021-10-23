@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\EnemySearchRequest;
 use App\Repositories\Contracts\EnemySearchRepositoryInterface;
+use App\swagger\Controllers\Api\EnemySearchControllerInterface;
 
-class EnemySearchController extends Controller
+class EnemySearchController extends Controller implements EnemySearchControllerInterface
 {
     private $enemy;
 
@@ -40,7 +41,7 @@ class EnemySearchController extends Controller
         return $this->enemy->getBook();
     }
 
-    public function search(Request $request)
+    public function search(EnemySearchRequest $request)
     {
         if ($request->has('name')) {
             $name = $request->get('name');

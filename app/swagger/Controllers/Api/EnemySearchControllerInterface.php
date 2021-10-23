@@ -1,7 +1,9 @@
 <?php
 namespace App\swagger\Controllers\Api;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\EnemyRequest;
+use App\Http\Requests\EnemySearchRequest;
+use App\swagger\Requests\EnemySearchRequestInterface;
 
 interface EnemySearchControllerInterface
 {
@@ -125,5 +127,5 @@ interface EnemySearchControllerInterface
      *      )
      * )
      */
-    public function search(Request $request);
+    public function search(EnemySearchRequest $request);
 }
