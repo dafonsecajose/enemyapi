@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /storage/debugbar
+/storage/api-docs
 /.vscode
 /vendor
 .env

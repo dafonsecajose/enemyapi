@@ -178,6 +178,9 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "security": [
@@ -225,6 +228,9 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -283,6 +289,9 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "security": [
@@ -484,6 +493,9 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     }
                 },
                 "security": [
@@ -528,6 +540,9 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "security": [
@@ -572,6 +587,9 @@
                     },
                     "401": {
                         "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -633,6 +651,9 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "security": [
@@ -809,10 +830,10 @@
                 "title": "Enemy Request",
                 "description": "User request",
                 "required": [
-                    "sarch"
+                    "name"
                 ],
                 "properties": {
-                    "search": {
+                    "name": {
                         "description": "Field Serach",
                         "example": "John Doe"
                     }
