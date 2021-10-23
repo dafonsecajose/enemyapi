@@ -19,6 +19,7 @@ Esta API foi inspirada pelo 'bingo book', que contém informações sobre os ini
 - Run the command `php artisan jwt:secret` to create the secret in the .env file.
 - Run the command `php artisan db:seed` to create your first user with password 'password'.
 - Run the command `php artisan serves` to run the project.
+- Run the command `php artisan l5-swagger:generate` to generate the api documentation.
 
 ## Como executar?
 
@@ -29,6 +30,7 @@ Esta API foi inspirada pelo 'bingo book', que contém informações sobre os ini
 - Rode o comando `php artisan jwt:secret` para criar o secret no aquivo .env.
 - Rode o comando `php artisan db:seed` para criar o seu primeiro usuário com senha 'password'.
 - Rode o comando `php artisan serve` para rodar o projeto.
+- Rode o comando `php artisan l5-swagger:generate` para gerar a documentação da api.
 
 ## Documentation
 - https://documenter.getpostman.com/view/9944414/TzRNFpuG
