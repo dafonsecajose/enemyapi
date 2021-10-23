@@ -1,9 +1,10 @@
-<?php 
+<?php
 namespace App\swagger\Controllers\Api;
 
 use App\Http\Requests\EnemyRequest;
 
-interface EnemyControllerInterface {
+interface EnemyControllerInterface
+{
     /**
      * @OA\Get(
      *      path="/enemies",
@@ -59,6 +60,10 @@ interface EnemyControllerInterface {
      *      @OA\Response(
      *          response=403,
      *          description="Forbidden",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
      *      )
      * )
      */
@@ -98,6 +103,10 @@ interface EnemyControllerInterface {
      *      @OA\Response(
      *          response=403,
      *          description="Forbidden",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found",
      *      )
      * )
      */
@@ -144,6 +153,10 @@ interface EnemyControllerInterface {
      *      @OA\Response(
      *          response=404,
      *          description="Resource Not Found",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
      *      )
      * )
      */

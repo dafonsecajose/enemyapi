@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\swagger\Models\EnemyInterface;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Enemy extends Model
+class Enemy extends Model implements EnemyInterface
 {
     use HasFactory;
 

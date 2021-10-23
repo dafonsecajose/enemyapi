@@ -94,7 +94,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             }
 
             $user->delete();
-            return $this->success("User successfully removed", $user);
+            return $this->success("User successfully removed", $user, 204);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }

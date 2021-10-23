@@ -29,6 +29,11 @@ interface UserControllerInterface
      *          response=403,
      *          description="Forbidden",
      *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *      ),
+     *      
      * )
      */
     public function index();
@@ -61,6 +66,10 @@ interface UserControllerInterface
      *      @OA\Response(
      *          response=403,
      *          description="Forbidden",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
      *      )
      * )
      */
@@ -95,6 +104,10 @@ interface UserControllerInterface
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
      *      ),
      *      @OA\Response(
      *          response=403,
@@ -145,6 +158,10 @@ interface UserControllerInterface
      *      @OA\Response(
      *          response=404,
      *          description="Resource Not Found",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
      *      )
      * )
      */

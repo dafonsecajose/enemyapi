@@ -125,7 +125,7 @@ class EnemyRepository extends AbstractRepository implements EnemyRepositoryInter
             }
 
             $enemy->delete();
-            return $this->success("Enemy successfully removed", $enemy);
+            return $this->success("Enemy successfully removed", $enemy, 204);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
